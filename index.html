@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 An image will appear here in 3 seconds:
 <script>
+  if (!('serviceWorker' in navigator)) {
+    console.log('Service Worker not supported');
+  } else {
+    navigator.serviceWorker.register('/sw.js')
+    .then(function(registration) {
+      console.log('SW registered! Scope is:', registration.scope);
+    })
+    .catch(err => console.log('Boo!', err)); // .catch a registration error
+  }
   setTimeout(() => {
     const img = new Image();
     img.src = '/dog.png';

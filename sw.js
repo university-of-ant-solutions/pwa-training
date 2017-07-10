@@ -1,6 +1,5 @@
 self.addEventListener('install', event => {
   console.log('V1 installing…');
-
   // cache a cat PNG
   event.waitUntil(
     caches.open('static-v1').then(cache => cache.add('/cat.png'))
