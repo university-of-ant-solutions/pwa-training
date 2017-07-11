@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 An image will appear here in 3 seconds:
+<button class="register">Register background sync</button>
 <script>
   if (!('serviceWorker' in navigator)) {
     console.log('Service Worker not supported');
@@ -15,4 +16,18 @@ An image will appear here in 3 seconds:
     img.src = '/dog.png';
     document.body.appendChild(img);
   }, 3000);
+
+  document.querySelector('.register').addEventListener('click', function(event) {
+    event.preventDefault();
+    new Promise(function(resolve, reject) {
+      resolve(navigator.serviceWorker.ready);
+    }).then(function(reg) {
+      return reg.sync.register('syncTest');
+    }).then(function() {
+      console.log('Sync registered');
+    }).catch(function(err) {
+      console.log('It broke');
+      console.log(err.message);
+    });
+  });
 </script>

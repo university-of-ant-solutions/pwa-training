@@ -34,3 +34,7 @@ self.addEventListener('fetch', event => {
     event.respondWith(caches.match('/horse.png'));
   }
 });
+
+self.addEventListener('sync', function(event) {
+  console.log(event);
+});
