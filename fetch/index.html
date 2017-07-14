@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+Test Fetch API
+<script>
+// https://docs.google.com/presentation/d/1Rr_7rP3_XaUsr3m0CKXqWSzW3G4PeFWgp_-INoV7Xfc/edit#slide=id.p39
+fetch('https://news-pwa.particle4dev.com/api/v1/news')
+.then(function(response) {
+  if (!response.ok) {
+    throw response.statusText;
+  }
+  return response.json();
+})
+.then(function(data){
+   console.log(data);
+})
+.catch(function(error) {
+  console.log('Fetch failed', error);
+});
+
+</script>
