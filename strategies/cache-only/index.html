@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+  Cache Only
+  <button class="register">Send request</button>
+<script>
+  if (!('serviceWorker' in navigator)) {
+    console.log('Service Worker not supported');
+  } else {
+    navigator.serviceWorker.register('/strategies/cache-only/sw.js', {
+      scope: '/strategies/cache-only/'
+    })
+    .then(function(registration) {
+      console.log('SW registered! Scope is:', registration.scope);
+    })
+    .catch(err => console.log('Boo!', err)); // .catch a registration error
+  }
+  document.querySelector('.register').addEventListener('click', function(event) {
+    event.preventDefault();
+    fetch('/strategies/cache-only/data.json')
+    .then(function(response) {
+      if (!response.ok) {
+        throw response.statusText;
+      }
+      return response.json();
+    })
+    .then(function(data){
+       console.log(data);
+    })
+    .catch(function(error) {
+      console.log('Fetch failed', error);
+    });
+  });
+</script>
