@@ -6,7 +6,7 @@ var globalOptions = {
     maxEntries: null,
     queryOptions: null
   },
-  debug: false,
+  debug: true,
   networkTimeoutSeconds: null,
   preCacheItems: [],
   // A regular expression to apply to HTTP response codes. Codes that match
@@ -58,18 +58,18 @@ function openCache(options) {
 // ------- Actions ------- //
 
 self.addEventListener('install', function(event) {
-  console.log('service workers: Installation');
-  event.waitUntil();
+  debug('service workers: Installation');
+  // event.waitUntil();
 });
 
 self.addEventListener('activate', function(event) {
-  console.log('service workers: Activation');
-  event.waitUntil();
+  debug('service workers: Activation');
+  // event.waitUntil();
 });
 
 
 self.addEventListener('fetch', function(event) {
-  console.log('service workers: Responds to fetch');
+  debug('service workers: Responds to fetch');
   if (event.request.method === 'GET') {
 
   }
