@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+  SW template
+<script>
+  if (!('serviceWorker' in navigator)) {
+    console.log('Service Worker not supported');
+  } else {
+    navigator.serviceWorker.register('/strategies/template/sw.js', {
+      scope: '/strategies/template/'
+    })
+    .then(function(registration) {
+      console.log('SW registered! Scope is:', registration.scope);
+    })
+    .catch(err => console.log('Boo!', err)); // .catch a registration error
+  }
+</script>
