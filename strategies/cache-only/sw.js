@@ -60,7 +60,7 @@ function openCache(options) {
 var urlString = '/strategies/cache-only/data.json';
 
 self.addEventListener('install', function(event) {
-  console.log('service workers: Installation');
+  debug('service workers: Installation');
   event.waitUntil(
     openCache().then(function(cache){
       var request = new Request(urlString, {credentials: 'same-origin'});
@@ -85,13 +85,13 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('activate', function(event) {
-  console.log('service workers: Activation');
+  debug('service workers: Activation');
   // event.waitUntil();
 });
 
 
 self.addEventListener('fetch', function(event) {
-  console.log('service workers: Responds to fetch');
+  debug('service workers: Responds to fetch');
   const url = new URL(event.request.url);
   if (url.origin == location.origin && url.pathname == urlString) {
     debug('Strategy: cache only [' + event.request.url + ']');
